@@ -2,7 +2,9 @@ import React from 'react'
 
 const WatchList = () => {
   return (
-    <div>WatchList</div>
+    <>
+      <h1>Watchlist</h1>
+    </>
   )
 }
 
