@@ -1,0 +1,19 @@
+nav {
+  background-color: black;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+nav .nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.nav-link.active {
+  color: rgb(66, 66, 236);
+}
+nav button:hover {
+  background: rgb(39, 39, 99);
+}
