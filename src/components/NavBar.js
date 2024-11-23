@@ -1,8 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+  const { logout, isLoggedIn } = useAuth();
+  const handleLoginClick = () => {
+    if (isLoggedIn) {
+      logout();
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <nav>
       <NavLink
@@ -29,7 +40,9 @@ const NavBar = () => {
       >
         About
       </NavLink>
-      <button className="category-buttons">Login</button>
+      <button className="category-buttons" onClick={handleLoginClick}>
+        {isLoggedIn ? "Logout" : "Login"}
+      </button>
     </nav>
   );
 };

@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import deleteIcon from "../assets/delete.png";
 
 const MovieCard = ({ id, image, releaseDate, rating, name }) => {
+  const { removeFromWatchList, watchlist } = useAuth();
+
+  const isInWatchList = watchlist.some((movie) => movie.id === id);
+
   return (
     <Link to={`/movie/${id}`} className="links">
       <div className="movie-container">
@@ -20,6 +26,11 @@ const MovieCard = ({ id, image, releaseDate, rating, name }) => {
           <div className="movie-rating">
             <p className="yellow">{rating}</p>
           </div>
+        </div>
+        <div className="remove-from-watchlist-container">
+          <button className="remove-from-watchlist">
+            <img className="icon-image" />
+          </button>
         </div>
       </div>
     </Link>

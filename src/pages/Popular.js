@@ -1,9 +1,10 @@
 import React from "react";
 import MovieCard from "../components/MovieCard";
 import { useOutletContext } from "react-router-dom";
-import arrowBack from "../assets/arrowBack.png";
-import arrowForward from "../assets/arrowForward.png";
+import loadingGif from "../assets/loading.gif";
 import PageHeader from "../components/PageHeader";
+import Footer from "../components/Footer";
+import Loading from "../components/Loading";
 const Popular = () => {
   const {
     baseURL,
@@ -43,30 +44,23 @@ const Popular = () => {
 
   return (
     <>
-      <PageHeader />
+      <PageHeader
+        movies={movies}
+        setMovies={setMovies}
+        API_KEY={API_KEY}
+        baseURL={baseURL}
+      />
       <main>
         <section className="section-movies-container">
-          {!loading ? <p>Loading ....</p> : moviesToRender}
+          {!loading ? <Loading /> : moviesToRender}
         </section>
       </main>
-      <footer className="pagination">
-        <button className="category-buttons" onClick={handlePreviousClick}>
-          <img className="icon-image" src={arrowBack} alt="arrow back icon" />
-        </button>
-        <button className="category-buttons" onClick={() => handlePageClick(1)}>
-          1
-        </button>
-        <button className="category-buttons" onClick={() => handlePageClick(2)}>
-          2
-        </button>
-        <button className="category-buttons" onClick={handleNextClick}>
-          <img
-            className="icon-image"
-            src={arrowForward}
-            alt="arrow forward icon"
-          />
-        </button>
-      </footer>
+      <Footer
+        page={page}
+        handlePageClick={handlePageClick}
+        handleNextClick={handleNextClick}
+        handlePreviousClick={handlePreviousClick}
+      />
     </>
   );
 };

@@ -33,6 +33,23 @@ code {
 .links {
   text-decoration: none;
 }
+.heading-big {
+  font-size: 25px;
+}
+.hidden {
+  display: none;
+}
+button.add-to-wishlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: gray;
+}
+/* button.remove-from-watchlist {
+  background: red;
+  height: 20px;
+} */
 .movie-category-header {
   margin-top: 20px;
   display: flex;
@@ -104,7 +121,7 @@ code {
   justify-content: space-between;
   background: black;
   color: white;
-  height: 20%;
+  height: 30%;
   padding: 0 13px;
 }
 .section-movie-info {
@@ -159,6 +176,66 @@ code {
   align-items: center;
   justify-content: center;
 }
+/* Login page CSS */
+.login-form-container,
+.signup-form-container {
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border: 2px solid transparent;
+  box-shadow: 2px 3px 3px 3px rgba(59, 59, 140, 0.295);
+  width: 50%;
+  height: 50%;
+  padding: 30px 50px;
+}
+form.user-forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 80%;
+}
+form.user-forms input {
+  height: 40px;
+  width: 80%;
+  border: 2px solid rgb(59, 59, 140);
+  background: none;
+  outline: none;
+}
+/*WatchList CSS*/
+.watchlist-container {
+  text-align: center;
+}
+.watchlist-container h1 {
+  font-size: 30px;
+}
+/* Loading component CSS*/
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
+}
+.loading-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loading-container div img {
+  height: 80px;
+}
+.loading-container div p {
+  font-weight: 700;
+  color: rgb(59, 59, 140);
+  font-size: 20px;
+}
+/*Footer CSS */
 .pagination {
   width: 100%;
   height: 100px;

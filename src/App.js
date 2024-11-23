@@ -1,14 +1,13 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { AuthProvider } from "./context/AuthContext";
 import NavBar from "./components/NavBar";
 import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
       <NavBar />
       <Outlet />
-    </div>
+    </AuthProvider>
   );
 }
 

@@ -1,11 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import save from "../assets/bookmark.png";
+import { useAuth } from "../context/AuthContext";
+import Loading from "./Loading";
 
 const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = React.useState(null);
   const [recommended, setRecommended] = React.useState([]);
+  const navigate = useNavigate();
 
   const API_KEY = "0e34ed3b0c38a42756307835ae2712c8";
   const baseURL = "https://api.themoviedb.org/3";
@@ -15,7 +19,6 @@ const MovieDetails = () => {
       .then((r) => r.json())
       .then((data) => {
         setMovie(data);
-        console.log(data);
       })
       .catch((error) => console.error("Error getting movie ", error));
   }, [id]);
@@ -41,7 +44,18 @@ const MovieDetails = () => {
     );
   });
 
-  if (!movie) return <p>Loading ...</p>;
+  const { isLoggedIn, addToWatchList } = useAuth();
+  const handleAddToWishList = () => {
+    if (!isLoggedIn) {
+      alert("Please login to add a movie to watchlist");
+      navigate("/login");
+    } else {
+      addToWatchList(movie);
+      alert("Movie added to watchlist!");
+    }
+  };
+
+  if (!movie) return <Loading />;
   const imageURL = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   return (
     <>
@@ -63,7 +77,10 @@ const MovieDetails = () => {
             <div className="hero-info">
               <h1 style={{ color: " rgb(59, 59, 140)" }}>{movie.title}</h1>
               <p style={{ color: "gray" }}>Come together</p>
-              <button className="add-to-wishlist">Add to my WatchList</button>
+              <button className="add-to-wishlist" onClick={handleAddToWishList}>
+                <img src={save} className="icon-image" />
+                Add to my WatchList
+              </button>
               <p style={{ color: " rgb(59, 59, 140)" }}>{movie.release_date}</p>
               <p className="gray">{movie.overview}</p>
               <p className="gray">
